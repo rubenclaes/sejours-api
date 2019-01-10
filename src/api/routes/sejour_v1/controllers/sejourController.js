@@ -1,5 +1,6 @@
 // External Dependancies
 const boom = require("boom");
+const mongoose = require('mongoose');
 
 // Get Data Models
 const Sejour = require("../models/Sejour");
@@ -18,9 +19,31 @@ exports.getSejours = async (req, reply) => {
 // Get single country by ID
 exports.getSingleSejour = async (req, reply) => {
   try {
-    const id = req.params.id;
-    const sejour = await Sejour.findById(id);
+    const id =  req.params.id;
+    const sejour = await Sejour.findById(id, (err, result) => {
+      if (err) { 
+        throw boom.boomify(err);
+      }
+      if (!result) {
+        throw boom.notFound('Sejour ID not found');
+      }
+    });
     return sejour;
+  } catch (err) {
+    throw boom.boomify(err);
+  }
+};
+
+// Get single country by CountryCode
+exports.getSingleSejourByCountryCode = async (req, reply) => {
+  try {
+    const countrycode =  req.query.countrycode;
+    // get the user starlord55
+    User.find({ countrycode: countrycode },  (err, user) => {
+      if (err) throw err;
+
+      return sejour;
+    });
   } catch (err) {
     throw boom.boomify(err);
   }

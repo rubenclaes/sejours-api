@@ -1,5 +1,5 @@
 // Import our Controllers
-const carController = require('../../controllers/carController');
+const carController = require('./controllers/carController');
 // Import Swagger documentation
 const documentation = require('./carApi');
 
