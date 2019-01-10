@@ -33,6 +33,31 @@ exports.addSejourSchema = {
   }
 };
 
+exports.countryCodeSchema = {
+  description: 'Create a new country with sejour',
+  tags: ['sejour'],
+  summary: 'Creates a new country with given values',
+  querystring: {
+    countrycode: { type: 'string' }
+  },
+  response: {
+    200: {
+      description: 'Successful response',
+      type: 'object',
+      properties: {
+        language: { type: 'string' },
+        countryid: { type: 'number' },
+        countrycode: { type: 'string' },
+        shortDesc: { type: 'string' },
+        longDesc: { type: 'string' },
+        translation: { type: 'array' },
+        maxAccomAllowance: { type: 'number' },
+        fixedDailyAllowance: { type: 'array' }
+      }
+    }
+  }
+};
+
 exports.getSejoursSchema = {
        
   description: 'Access to all sejours',

@@ -27,8 +27,10 @@ exports.getSingleSejour = async (req, reply) => {
       if (!result) {
         throw boom.notFound('Sejour ID not found');
       }
+     
     });
     return sejour;
+    
   } catch (err) {
     throw boom.boomify(err);
   }
@@ -38,12 +40,10 @@ exports.getSingleSejour = async (req, reply) => {
 exports.getSingleSejourByCountryCode = async (req, reply) => {
   try {
     const countrycode =  req.query.countrycode;
-    // get the user starlord55
-    User.find({ countrycode: countrycode },  (err, user) => {
+    const sejour = await Sejour.find({ countrycode: countrycode },  (err, result) => {
       if (err) throw err;
-
-      return sejour;
     });
+    return sejour;
   } catch (err) {
     throw boom.boomify(err);
   }

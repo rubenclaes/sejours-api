@@ -16,8 +16,8 @@ module.exports = async (fastify, options) => {
     sejourController.getSingleSejour
   );
 
-  fastify.get('/sejours?countrycode=:countrycode',
-    doc.addSejourSchema,
+  fastify.get('/sejours?countrycode=NL',
+    doc.countryCodeSchema,
     sejourController.getSingleSejourByCountryCode
   );
 
